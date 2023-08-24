@@ -101,6 +101,7 @@ export class EditUserComponent {
   deleteUser() {
     this.userservice.deleteUser(this.userDetails.id).subscribe({
       next: (user) => {
+        console.log(user);
         this.router.navigate(['/view-users']);
       },
     });

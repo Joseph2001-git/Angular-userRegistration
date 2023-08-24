@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 })
 export class ViewUsersComponent {
   users: User[]=[]
-  userid:string;
   users$: Observable<User[]>;
 
 
@@ -36,16 +35,6 @@ export class ViewUsersComponent {
     this.router.navigate(['login-page'])
   }
 
-  searchById(){
-      this.userservice.getUserById(this.userid).subscribe({
-        next: (users) => {
-          console.log(users);
-          this.users=this.users.filter(p=>p.id == users.id);
-        },
-      });
-
-
-  }
 
   ngOnDestroy() {}
 }
