@@ -1,0 +1,32 @@
+<div class="
+    position-absolute
+    start-50
+    top-50
+    translate-middle
+    add-todo
+    bg-white
+  ">
+  <form class="reg-form shadow">
+    <h2 class="page-title bg-danger p-2 text-center text-white">
+      ToDo Information
+    </h2>
+    <div class="controls-containers place-margin place-padding">
+
+      <div *ngIf="admin">
+        <label for="exampleInputUserId1" class="form-label">UserId</label>
+        <input type="text" class="form-control" name="UserId" [(ngModel)]="todoDetails.userId" />
+      </div>
+
+      <label for="exampleInputEmail1" class="form-label">ToDoMessage</label>
+      <input type="text" class="form-control" name="message" [(ngModel)]="todoDetails.toDoMessage" />
+
+      <button type="submit" class="btn btn-danger mb-2" (click)="createToDo();">
+        Add
+      </button>
+
+      <button type="submit" class="btn btn-outline-danger" (click)="cancelToDo();">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,24 @@
+<div class="mt-5">
+  <h1 class="mb-3">ToDos</h1>
+  <table class="table container view-todo-user" >
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>ToDOMessage</th>
+        <th>UserId</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todo$">
+        <td>{{todo.id}}</td>
+        <td>{{todo.toDoMessage}}</td>
+        <td>{{todo.userId}}</td>
+        <td><a [routerLink]="['/login-page','view-todo','edit-todo',todo.id ]">View</a></td>
+      </tr>
+    </tbody>
+    <button class="btn btn-dark mt-2" (click)="addToDo();">Add ToDo</button>
+    <button class="btn btn-dark mt-2 signoutbtn" (click)="signOut();">Sign Out</button>
+  </table>
+
+</div>

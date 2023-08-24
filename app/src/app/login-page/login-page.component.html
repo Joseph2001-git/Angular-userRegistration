@@ -1,0 +1,53 @@
+<div class="
+    position-absolute
+    start-50
+    top-50
+    translate-middle
+    bg-white
+    shadow
+    container
+    login-page
+  ">
+  <form class="login-form">
+    <h2 class="page-title bg-warning p-1 text-center text-black">User Login</h2>
+    <div class="contains">
+
+      <label for="Email" class="form-label">Email address</label>
+      <input type="email" class="form-control" [formControl]="Email" />
+
+      <label for="Password" class="form-label">Password</label>
+      <input type="password" class="form-control" [formControl]="Password" />
+
+      <div *ngIf="check">
+        <p class="alert alert-danger">Email or Password is invalid</p>
+        <p class="text-center">If forgot password <span class="click"
+            (click)="forgotpass=true;user.password='';user.checkPassword=''">Click Here</span></p>
+
+        <div *ngIf="forgotpass">
+          <label for="inputPassword6" class="form-label">Password</label>
+          <input class="form-control" name="password" [(ngModel)]="user.password" type="password"/>
+
+          <label for="confirmInputPassword6" class="form-label">Confirm Password</label>
+          <input class="form-control password-confirm-input" name="checkPassword" [(ngModel)]="user.checkPassword" type="password"/>
+
+          <div *ngIf="user.password != user.checkPassword" class="alert alert-danger">
+            Password does not match
+          </div>
+          <div *ngIf="user.password.length<8" class="alert alert-danger">
+            Password must have at least 8 characters
+          </div>
+
+          <button class="btn btn-warning mb-2" (click)="forgot()" [disabled]="user.password.length<8 || user.checkPassword.length<8">
+            Save
+          </button>
+        </div>
+
+      </div>
+
+      <button [disabled]="!form.valid" class="btn btn-warning" (click)="onClick()">
+        Submit
+      </button>
+      <p class="text-center mt-2 mb-2">If not a member <a [routerLink]="['/user-registration']">Register here</a></p>
+    </div>
+  </form>
+</div>

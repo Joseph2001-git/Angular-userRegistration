@@ -1,0 +1,69 @@
+<div class="
+    position-absolute
+    start-50
+    top-50
+    translate-middle
+    login-page
+    bg-white
+  ">
+  <form class="reg-form shadow">
+    <h2 class="page-title bg-danger p-2 text-center text-white">
+      User Information
+    </h2>
+    <div class="controls-containers place-margin place-padding">
+
+      <div class="row">
+        <div class="col">
+          <label for="firstName" class="form-label">First Name </label>
+          <input type="text" class="form-control" id="first" name="firstName" [(ngModel)]="userDetails.firstName" />
+        </div>
+        <div class="col">
+          <label for="lastName" class="form-label">Last Name </label>
+          <input type="text" class="form-control" [(ngModel)]="userDetails.lastName" name="lastName" id="last" />
+        </div>
+      </div>
+
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="userDetails.email" [disabled]="true"/>
+
+      <label for="inputPassword6" class="form-label">Password</label>
+      <input class="form-control" name="password" [(ngModel)]="userDetails.password"/>
+
+      <label for="confirmInputPassword6" class="form-label">Confirm Password</label>
+      <input class="form-control password-confirm-input" name="checkPassword" [(ngModel)]="userDetails.checkPassword" />
+
+      <div *ngIf="userDetails.password != userDetails.checkPassword" class="alert alert-danger">
+        Password does not match
+      </div>
+
+      <label for="pickCountry" class="form-label">Country</label>
+      <select class="form-select" [formControl]="country" name="country" [(ngModel)]="userDetails.country">
+        <option *ngFor="let country of countries" [value]="country.shortName">
+          {{ country.name }}
+        </option>
+      </select>
+
+      <label for="pickState" class="form-label">State</label>
+      <select class="form-select" [formControl]="state" name="state" [(ngModel)]="userDetails.state">
+        <option *ngFor="let state of states" [value]="state">
+          {{ state }}
+        </option>
+      </select>
+
+      <label for="pickCity" class="form-label">City</label>
+      <select class="form-select" [formControl]="city" name="city" [(ngModel)]="userDetails.city">
+        <option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </option>
+      </select>
+
+      <button type="submit" class="btn btn-danger mb-2" (click)="updateUser();">
+        Save
+      </button>
+
+      <button type="submit" class="btn btn-outline-danger" (click)="deleteUser();">
+        Delete
+      </button>
+    </div>
+  </form>
+</div>

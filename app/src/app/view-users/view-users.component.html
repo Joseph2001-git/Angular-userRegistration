@@ -1,0 +1,37 @@
+<div class="view-user">
+  <h1 class="mb-3">Users</h1>
+  <table class="table container">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>CheckPassword</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td>{{user.id}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.checkPassword}}</td>
+        <td>{{user.country}}</td>
+        <td>{{user.state}}</td>
+        <td>{{user.city}}</td>
+        <td><a [routerLink]="['/view-users','edit-user', user.id]">View</a></td>
+      </tr>
+    </tbody>
+    <button class="btn btn-dark mt-2" (click)="addUser();">Add User</button>
+
+  </table>
+</div>
+
+

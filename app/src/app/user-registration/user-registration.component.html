@@ -1,0 +1,76 @@
+<div class="
+    position-absolute
+    start-50
+    top-50
+    translate-middle
+    user-registration
+    bg-white
+  ">
+  <form [formGroup]="form" class="reg-form shadow">
+    <h2 class="page-title bg-primary p-2 text-center text-white">
+      {{ title }}
+    </h2>
+    <div class="controls-containers place-margin place-padding">
+
+      <div class="row">
+        <div class="col">
+          <label for="firstName" class="form-label">First Name </label>
+          <input type="text" class="form-control" formControlName="firstName" id="first" />
+        </div>
+        <div class="col">
+          <label for="lastName" class="form-label">Last Name </label>
+          <input type="text" class="form-control" formControlName="lastName" id="last" />
+        </div>
+      </div>
+
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" />
+      <p id="emailHelp" class="form-text mb-2 mt-2">
+        We'll never share your email with anyone else.
+      </p>
+
+      <label for="inputPassword6" class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password" aria-describedby="passwordHelpInline" />
+
+      <label for="confirmInputPassword6" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control password-confirm-input" formControlName="checkPassword"
+        aria-describedby="passwordHelpInline" />
+
+      <div
+        *ngIf="form.errors?.['passwordmatch'] && (form.get('checkPassword').dirty || form.get('checkPassword').touched)"
+        class="alert alert-danger">
+        Password does not match
+      </div>
+      <div
+        *ngIf="form.get('password').value.length<8 &&(form.get('password').dirty || form.get('password').touched)"
+        class="alert alert-danger">
+        Password must have at least 8 characters
+      </div>
+
+      <label for="pickCountry" class="form-label">Country</label>
+      <select class="form-select" aria-label="Default select example" [formControl]="country" name="country">
+        <option *ngFor="let country of countries" [value]="country.shortName">
+          {{ country.name }}
+        </option>
+      </select>
+
+      <label for="pickState" class="form-label">State</label>
+      <select class="form-select" aria-label="Default select example" [formControl]="state" name="state">
+        <option *ngFor="let state of states" [value]="state">
+          {{ state }}
+        </option>
+      </select>
+
+      <label for="pickCity" class="form-label">City</label>
+      <select class="form-select" aria-label="Default select example" [formControl]="city" name="city">
+        <option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </option>
+      </select>
+
+      <button type="submit" [disabled]="!form.valid" (click)="addUser();" class="btn btn-primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
