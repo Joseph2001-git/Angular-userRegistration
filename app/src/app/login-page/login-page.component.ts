@@ -47,18 +47,21 @@ export class LoginPageComponent {
   }
 
   onClick() {
-    if (
-      this.Email.value == 'jc@hotmail.com' &&
-      this.Password.value == 'ssssssss'
-    ) {
-      this.router.navigate(['/view-users']);
-    }
     this.user = this.users.filter((p) => p.email.toLowerCase() == this.Email.value.toLowerCase()).pop();
     if (this.users.filter((p) => p.email.toLowerCase() == this.Email.value.toLowerCase()).length <= 0) {
       console.log('No User');
       this.check=true;
     } else if (this.user.password == this.Password.value) {
-      this.router.navigate(['/login-page', 'view-todo', this.user.id]);
+      // this.router.navigate(['/login-page', 'view-todo', this.user.id]);
+      this.userservice.getUserRoleByUserID(this.user.id).subscribe({
+        next:(userrole)=>{
+          if(userrole.roleId == 1){
+            this.router.navigate(['/view-users']);
+          } else {
+            this.router.navigate(['/login-page', 'view-todo', this.user.id]);
+          }
+        }
+      })
     } else {
       this.check = true;
 

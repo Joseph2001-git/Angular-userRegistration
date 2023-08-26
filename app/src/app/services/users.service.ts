@@ -5,6 +5,7 @@ import { User } from '../Models/user.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { ToDo } from '../Models/todo.model';
+import { UserRole } from '../Models/userrole.model';
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +70,9 @@ export class UsersService {
 
   deleteToDo(id: number): Observable<User> {
     return this.http.delete<User>(this.apiUrl + '/api/ToDo/Delete/' + id);
+  }
+
+  getUserRoleByUserID(userid:number):Observable<UserRole>{
+    return this.http.get<UserRole>(this.apiUrl + "/api/UserRoles/Get/" + userid);
   }
 }
